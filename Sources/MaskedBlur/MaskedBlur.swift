@@ -11,19 +11,28 @@ import SwiftUI
 
 public extension View {
   
-  func blur<Mask>(radius: CGFloat, opaque: Bool = false, mask: @escaping () -> Mask) -> some View where Mask : Shape {
+  func blur<MaskShape>(radius: CGFloat, opaque: Bool = false, mask: @escaping () -> MaskShape) -> some View where MaskShape : Shape {
     modifier(BlurWithMask(radius: radius, opaque: opaque, mask: mask))
   }
   
 }
 
-private struct BlurWithMask<Mask>: ViewModifier where Mask: Shape {
+/**
+Blurs a view, The mask provided creates a hole in the blur to see the content underneath
+ 
+ The content is rendered twice. The second content pass is blurred and masked so that we can create
+ the effect
+ */
+public struct BlurWithMask<MaskShape>: ViewModifier where MaskShape: Shape {
   
-  private let mask: () -> Mask
+  /// The `shape` which acts as the mask
+  private let mask: () -> MaskShape
+  /// Blur radius
   private let radius: CGFloat
+  /// Is the view opaque
   private let opaque: Bool
   
-  init(radius: CGFloat, opaque: Bool = false, @ViewBuilder mask: @escaping () -> Mask) {
+  public init(radius: CGFloat, opaque: Bool = false, @ViewBuilder mask: @escaping () -> MaskShape) {
     self.radius = radius
     self.opaque = opaque
     self.mask = mask
@@ -44,7 +53,8 @@ private struct BlurWithMask<Mask>: ViewModifier where Mask: Shape {
   
 }
 
-struct ContainerShape<Mask>: Shape where Mask: Shape {
+/// We need to create the inverse of the shape so that we can create a hole
+internal struct ContainerShape<Mask>: Shape where Mask: Shape {
   
   private let shape: Mask
   
@@ -55,117 +65,9 @@ struct ContainerShape<Mask>: Shape where Mask: Shape {
   func path(in rect: CGRect) -> Path {
     var path = Path()
     
-    path.addRect(UIScreen.main.bounds)
+    path.addRect(rect)
     path.addPath(shape.path(in: rect))
     
     return path
   }
 }
-
-
-
-
-
-
-
-
-//public struct MaskedBlur {
-//    public private(set) var text = "Hello, World!"
-//
-//    public init() {
-//    }
-//}
-//
-//import SwiftUI
-//
-//struct TestView2: View {
-//
-//  @State var position: CGPoint = .zero
-//
-//  var simpleDrag: some Gesture {
-//    DragGesture()
-//      .onChanged { value in
-//        self.position = value.location
-//      }
-//  }
-//
-//  var body: some View {
-//    ZStack {
-//
-//      Circle()
-//        .fill(Color.green)
-//        .frame(height: 200)
-//
-//      Circle()
-//        .fill(Color.pink)
-//        .frame(height: 200)
-//        .offset(x: 50, y: 100)
-//
-//      Circle()
-//        .fill(Color.orange)
-//        .frame(height: 100)
-//        .offset(x: -50, y: 00)
-//    }
-//    .maskedBlur(position: $position)
-//    .gesture(
-//      simpleDrag
-//    )
-//
-//  }
-//}
-//
-//struct MaskedBlur: ViewModifier {
-//
-//  @Binding var position: CGPoint
-//
-//  /// Render the content twice
-//  func body(content: Content) -> some View {
-//
-//    ZStack {
-//      content
-//
-//      content
-//        .blur(radius: 10)
-//        .mask(
-//          Hole(position: $position)
-//            .fill(style: FillStyle(eoFill: true))
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        )
-//    }
-//
-//  }
-//}
-//
-//extension View {
-//  func maskedBlur(position: Binding<CGPoint>) -> some View {
-//    self.modifier(MaskedBlur(position: position))
-//  }
-//}
-//
-//struct Hole: Shape {
-//
-//  //@Binding var position: CGPoint
-//  
-//
-//  func path(in rect: CGRect) -> Path {
-//    var path = Path()
-//
-//    path.addRect(UIScreen.main.bounds)
-//
-//    //path.addEllipse(in: CGRect(x: position.x, y: position.y, width: 200, height: 200))
-//    //path.addPath(<#T##path: Path##Path#>)
-//
-//    return path
-//  }
-//}
-//
-//
-//#if DEBUG
-//
-//struct TestView2_Previews: PreviewProvider {
-//  static var previews: some View {
-//    TestView2()
-//  }
-//}
-//
-//#endif

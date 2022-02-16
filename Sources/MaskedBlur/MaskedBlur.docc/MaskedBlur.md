@@ -1,4 +1,4 @@
-# Chris's SwiftUI Masked Blur
+# ``MaskedBlur``
 
 Blur a View allowing another View to act as a mask to knock a hole in the Blur, 
 to reveal an unblurred version
@@ -44,3 +44,9 @@ struct MyCirclesView_Previews: PreviewProvider {
   }
 }
 ```
+
+## Topics
+
+### Guides
+
+- <doc:Getting-Started-with-MaskedBlur>

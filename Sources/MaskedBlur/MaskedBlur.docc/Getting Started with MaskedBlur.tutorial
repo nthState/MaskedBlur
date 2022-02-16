@@ -1,0 +1,43 @@
+@Tutorial() {
+  @Intro(title: "Getting Started with MaskedBlur in SwiftUI") {
+    In this tutorial, I'll show you how to integrate MaskedBlur
+    into your SwiftUI project
+    
+  }
+  
+  @Section(title: "Blur some Circles") {
+    @ContentAndMedia {
+      I'll blur some circles, but knock a circle hole in the blur
+      
+    }
+    
+    @Steps {
+      @Step {
+        Add some circles to your view
+        
+        Allow them to overlap each other
+        
+        @Code(name: "MaskedBlur.swift", file: "01_Blur.swift") {
+          @Image(source: "01_Blur.png", alt: "accessible description")
+        }
+      }
+      
+      @Step {
+        Import the ``MaskedBlur`` Swift Package
+        
+        @Code(name: "MaskedBlur.swift", file: "02_Blur.swift") {
+          
+        }
+      }
+      
+      @Step {
+        Apply the viewModifier and set a Shape as the Blur Mask~
+        
+        @Code(name: "MaskedBlur.swift", file: "03_Blur.swift") {
+          @Image(source: "03_Blur.png", alt: "accessible description")
+        }
+      }
+
+    }
+  }
+}
