@@ -44,3 +44,8 @@ struct MyCirclesView_Previews: PreviewProvider {
   }
 }
 ```
+
+| Before | After |
+|--------|-------|
+![Before](Sources/MaskedBlur/MaskedBlur.docc/Resources/Images/01_Blur.png)|![After](Sources/MaskedBlur/MaskedBlur.docc/Resources/Images/03_Blur.png)
+
