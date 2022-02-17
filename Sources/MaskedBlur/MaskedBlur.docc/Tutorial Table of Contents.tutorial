@@ -1,16 +1,11 @@
 @Tutorials(name: "aa") {
-    @Intro(title: "Guides") {
-        text
-        
-        //@Image(source: file, alt: "accessible description")
+  @Intro(title: "Guides") {
+    Guides using Masked Blur
     }
     
     @Chapter(name: "Getting Started") {
-        getting started
-        
-        //@Image(source: file, alt: "accessible description")
-        
-        @TutorialReference(tutorial: "doc:Getting-Started-with-MaskedBlur")
+      Getting started with Masked Blur
+      @TutorialReference(tutorial: "doc:Getting-Started-with-MaskedBlur")
     }
     
-}
+  }
