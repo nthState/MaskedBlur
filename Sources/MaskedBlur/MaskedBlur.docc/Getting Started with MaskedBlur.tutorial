@@ -31,7 +31,7 @@
       }
       
       @Step {
-        Apply the viewModifier and set a Shape as the Blur Mask~
+        Apply the ViewModifier and set a Shape as the Blur Mask~
         
         @Code(name: "MaskedBlur.swift", file: "03_Blur.swift") {
           @Image(source: "03_Blur.png", alt: "accessible description")
