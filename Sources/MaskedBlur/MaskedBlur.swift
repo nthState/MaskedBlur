@@ -4,7 +4,7 @@
 //
 //  Copyright © 2022 Chris Davis, https://www.nthState.com
 //
-//  See https://github.com/nthState/MaskedBlur/blob/master/LICENSE for license information.
+//  See https://github.com/nthState/MaskedBlur/blob/main/LICENSE for license information.
 //
 
 import SwiftUI
