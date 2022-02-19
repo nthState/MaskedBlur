@@ -5,6 +5,10 @@ to reveal an unblurred version
 
 ## Overview
 
+| Before | After |
+|--------|-------|
+![Before](01_Blur.png)|![After](03_Blur.png)
+
 ```
 import SwiftUI
 import MaskedBlur
