@@ -49,3 +49,26 @@ struct MyCirclesView_Previews: PreviewProvider {
 |--------|-------|
 ![Before](Sources/MaskedBlur/MaskedBlur.docc/Resources/Images/01_Blur.png)|![After](Sources/MaskedBlur/MaskedBlur.docc/Resources/Images/03_Blur.png)
 
+
+## Documentation
+
+Documentation website here: https://nthstate.github.io/MaskedBlur/documentation/maskedblur/
+
+Building the docs
+
+```
+swift build
+```
+
+```
+PACKAGE_NAME=MaskedBlur
+REPOSITORY_NAME=MaskedBlur
+OUTPUT_PATH=./docs
+
+swift package --allow-writing-to-directory $OUTPUT_PATH \
+    generate-documentation --target $PACKAGE_NAME \
+    --disable-indexing \
+    --transform-for-static-hosting \
+    --hosting-base-path $REPOSITORY_NAME \
+    --output-path $OUTPUT_PATH
+ ```
